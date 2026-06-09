@@ -1,6 +1,6 @@
 @echo off
 REM ─── Job Hunt Pipeline Launcher ──────────────────────────────────────────────
-REM Entry point for Windows Task Scheduler (Mon-Fri at midnight).
+REM Entry point for Windows Task Scheduler (Mon-Thu at 1am).
 REM Starts Ollama if not already running, then runs the full pipeline.
 
 setlocal
