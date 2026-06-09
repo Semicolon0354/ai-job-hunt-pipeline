@@ -13,7 +13,9 @@ CONTACT = {
     "pro_name": "Joshua Humphreys, M.S.",
     "location": "Loveland, CO",
     "email":    "jdhumphreys01@gmail.com",
+    "work_email": "jhumphreys@ridgeline-data.com",
     "phone":    "(307) 241-0083",
+    "work_phone": "(970) 305-5464",
     "linkedin": "linkedin.com/in/joshua-humphreys-a7687b223",
     "github":   "github.com/Semicolon0354",
 }
