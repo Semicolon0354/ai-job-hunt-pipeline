@@ -1,0 +1,48 @@
+==========================================================
+JOB SUMMARY - JetRuby Agency | Business Analyst
+==========================================================
+Date: 2026-06-09
+Source: Indeed
+Score: 80/100
+URL: https://to.indeed.com/aagfhks7rx94
+
+COMPENSATION
+------------
+$86,390 - $108,900
+
+WHY THIS IS A GOOD FIT
+-----------------------
+This remote Business Analyst role asks for nearly Josh's entire toolkit: Power BI, Tableau, SQL, Python, R, VBA, and ETL — building data models, dashboards, and reports to drive data-driven decisions. His M.S. Data Analytics, Power BI/Power Automate experience, and VBA automation work at UCHealth line up cleanly. Fully remote with compensation squarely in his target band.
+
+KEY REQUIREMENTS TO HIGHLIGHT IN APPLICATION
+---------------------------------------------
+- Data visualization (Power BI / Tableau / Looker) dashboards
+- SQL querying and database design
+- ETL processes and large datasets
+- Programming for analysis/automation (Python, R, VBA)
+- Translating business requirements into insights
+
+ATS KEYWORDS (include these in resume/cover letter)
+----------------------------------------------------
+Business analysis, Power BI, Tableau, SQL, Python, R, VBA, ETL, data modeling, dashboards, requirements gathering, Agile
+
+REQUIREMENTS SUMMARY
+---------------------
+Must-haves:
+- Proven business analysis experience with project management in an Agile environment
+- Proficiency in a data visualization tool (Power BI, Tableau, or Looker)
+- Solid SQL knowledge (SQL Server / Oracle)
+- Programming skills in R, Python, VBA, or Bash
+
+Nice-to-haves:
+- ETL experience with Talend or similar
+- Familiarity with SDLC methodologies and linked data sources
+
+WATCH-OUTS / GAPS
+------------------
+Generic kitchen-sink tool list and the posting advertises visa sponsorship, which can signal a high-volume/staffing listing — vet the employer before investing heavily. Leans toward database design and Agile/SDLC project management where Josh is lighter; emphasize BI delivery and automation. Tableau listed alongside Power BI — Josh is stronger in Power BI.
+
+NOTES
+-----
+JetRuby Agency is a software development agency. Fully remote. Benefits include 401(k), flexible schedule, FSA, PTO, and visa sponsorship.
+==========================================================

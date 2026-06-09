@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated Word documents — outputs, not source
+personal/job_hunt/applications/**/*.docx
+
+# Logs
+personal/job_hunt/logs/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,48 @@
+==========================================================
+JOB SUMMARY - Interchecks | Data Analyst
+==========================================================
+Date: 2026-06-08
+Source: Indeed
+Score: 90/100
+URL: https://to.indeed.com/aasncqnwcmhm
+
+COMPENSATION
+------------
+$75,000 - $130,000
+
+WHY THIS IS A GOOD FIT
+-----------------------
+Interchecks wants a Data Analyst to own descriptive/diagnostic analytics — turning messy questions into clean answers, building scalable dashboards that cut manual reporting, and setting data-quality best practices. That is Josh's track record: automating compliance reporting at UCHealth EMS and building BI infrastructure from scratch in the National Guard. The 2-3 year requirement and SQL + Python + Excel stack fit cleanly, and the top of the band ($130K) is well within his target.
+
+KEY REQUIREMENTS TO HIGHLIGHT IN APPLICATION
+---------------------------------------------
+- Python-based data analysis
+- SQL across diverse data sources
+- Building scalable dashboards / reducing manual reporting
+- Data quality and integrity on large datasets
+- Communicating insights to non-technical stakeholders
+
+ATS KEYWORDS (include these in resume/cover letter)
+----------------------------------------------------
+Data Analyst, Python, SQL, Tableau, Excel, PowerPoint, dashboards, descriptive analytics, diagnostic analytics, data quality, data visualization, KPIs, reporting
+
+REQUIREMENTS SUMMARY
+---------------------
+Must-haves:
+- 2-3 years in BI, reporting, or data analysis
+- Proficient in Python-based data analysis
+- Proficient in Tableau
+- Proficient in Excel and PowerPoint
+- Proficient writing SQL queries
+
+Nice-to-haves:
+- Strong understanding of data quality principles and best practices
+
+WATCH-OUTS / GAPS
+------------------
+Tableau is a required 'proficient' skill and Josh's primary BI tool is Power BI — note Tableau exposure without overstating fluency. Fintech/payments domain is new territory; lean on transferable compliance-reporting experience. Wide salary band means the offer could land well below the $130K ceiling.
+
+NOTES
+-----
+Fast-growing B2B2C fintech payments company serving regulated industries (payments, online gaming). Equity grants, bonus, 401(k) match, unlimited PTO. Single primary IC owner for day-to-day analytics.
+==========================================================
