@@ -166,3 +166,8 @@ After drafting, quickly verify:
 - Does it sound like a person, not a press release?
 
 If any answer is no — fix it before presenting the draft.
+
+---
+## Learned — 2026-06-10 (Crossroads_2026-06-09)
+- Write "master's" in lowercase when referring to the degree generically ("a master's in Data Analytics"), not "Master's."
+- Use "over a decade of experience," not "a decade of experience."
