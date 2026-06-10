@@ -88,25 +88,18 @@ Select 8–12 from Josh's competency pool that directly match job requirements. 
 
 ### Experience — How to Write Bullets
 
-The profile lists Josh's actual accomplishments and responsibilities for each role. Use them as raw material to understand what he did — then write fresh, tailored bullets. Do not copy-paste from the profile.
+Select the most relevant bullets from the profile for each role based on what the job values. You may make minor wording adjustments to incorporate 1–2 ATS keywords naturally — but the core accomplishment and message of each bullet must remain intact. Do not rewrite bullets from scratch. Do not invent accomplishments or metrics not present in the profile.
 
 **Bullet count:**
 - Every role in Professional Experience: exactly 4 bullets
 - Every role in Additional Experience: exactly 2 bullets
-- Bullet count never changes role placement. Do not move a role to a different section to meet a count. If a role has fewer source bullets than needed, use all available ones.
+- Bullet count never changes role placement. Do not move a role to a different section to meet a count. If a role has fewer profile bullets than needed, use all available ones.
 
-**Per-role emphasis:**
-- *Knowledge Manager:* Power BI, Power Automate, SharePoint, data governance, stakeholder reporting, training — weight toward what this job values
-- *Operations Supervisor:* Excel VBA automation, dashboard design, operational analytics, stakeholder reporting; extra weight for healthcare roles
-- *Special Forces Medical Sergeant:* leadership, resource management, cross-functional coordination, risk-based decision-making; minimize medical specifics for non-healthcare roles
-- *Paramedic:* patient care coordination, rapid decision-making, multi-variable problem-solving under pressure
-
-**For every bullet:**
-- Work in 1–2 ATS keywords naturally — don't keyword-stuff
-- Use strong action verbs
-- Keep concise and results-oriented
-- Use only verified metrics from the profile (350+ soldiers, 100+ admins, 5 agencies, 50+ crews)
-- Never invent accomplishments or metrics not grounded in the profile
+**Per-role emphasis when selecting bullets:**
+- *Knowledge Manager:* weight toward Power BI, Power Automate, SharePoint, data governance, stakeholder reporting, or training — depending on what this job values
+- *Operations Supervisor:* weight toward Excel VBA automation, dashboard design, operational analytics, or stakeholder reporting; extra weight for healthcare roles
+- *Special Forces Medical Sergeant:* select bullets around leadership, resource management, cross-functional coordination, and risk-based decision-making; avoid medical specifics for non-healthcare roles
+- *Paramedic:* select bullets around patient care coordination, rapid decision-making, and multi-variable problem-solving
 
 ### Education
 Always include both degrees:
