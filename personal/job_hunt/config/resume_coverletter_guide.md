@@ -58,6 +58,10 @@ Select 8–12 skills from Josh's profile that directly match job requirements. U
 - Healthcare/clinical analytics roles → include in main Experience
 - General data/BI/analytics roles → move to "Additional Experience" at the bottom
 
+**Bullet count:**
+- Main experience roles: exactly 4 bullets each
+- Additional experience roles: exactly 2 bullets each
+
 For each relevant bullet, work in 1–2 ATS keywords where they fit naturally. Don't keyword-stuff.
 
 ### Education
@@ -119,3 +123,11 @@ Before saving, verify:
 - [ ] No corporate filler ("leverage synergies," "results-driven," "passionate professional")
 - [ ] Both files saved to the correct applications subfolder
 - [ ] Filenames follow the convention
+
+---
+## Learned — 2026-06-10 (Crossroads_2026-06-09)
+- Contact header is two lines: line 1 = phone | email | location; line 2 = LinkedIn | GitHub. Always include github.com/Semicolon0354 — do not omit the GitHub link.
+- Do not include a Certifications section. Josh removes it; leave certifications off the resume unless he explicitly asks for them.
+- List only tools Josh actually uses. Drop Tableau and Excel Power Pivot. Describe Power BI automation as "Power Query and DAX," not "SQL and Excel Power Pivot," and never invent a competency (e.g., "Revenue Cycle Management") that isn't in his profile.
+- In Core Competencies, place programming languages (SQL, R, Python) last — after BI, domain, and analytics skills — not at the front.
+- When naming the Knowledge Manager role in the summary, spell out the unit in full: "the Knowledge Manager for the 5th BN, 19th Special Forces Group, Colorado Army National Guard," not just "Colorado Army National Guard."
