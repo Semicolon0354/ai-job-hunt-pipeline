@@ -146,14 +146,30 @@ Return a JSON object with EXACTLY this structure:
       "dates": "exact dates from profile",
       "bullets": ["bullet1", "bullet2"]
     }}
+  ],
+  "education": [
+    {{
+      "degree": "exact degree from profile",
+      "school": "exact school from profile",
+      "date": "exact date from profile",
+      "coursework": ["3-5 most relevant courses for this role"]
+    }}
+  ],
+  "skills": [
+    {{
+      "category": "exact category name from profile",
+      "items": ["skill1", "skill2"]
+    }}
   ]
 }}
 
-BULLET COUNT RULES (strictly enforced):
+STRICT RULES:
 - Every role in main_experience must have EXACTLY 4 bullets — all roles, not just the first
 - Every role in additional_experience must have EXACTLY 2 bullets
 - NEVER move a role from additional_experience to main_experience to meet the bullet count
 - Role placement is fixed by profile rules — bullet count does not change it
+- education: keep degree, school, and date exactly as in the profile; select 3-5 most relevant coursework items for this role
+- skills: include ALL categories and items from the profile; reorder items within each category to put job-relevant tools first; never add or remove skills, never add Tableau
 
 CANDIDATE PROFILE:
 {profile_text}
@@ -340,9 +356,10 @@ def build_resume(content: dict) -> Document:
         for exp in additional:
             _add_experience_entry(doc, exp.get("company", ""), exp.get("title", ""), exp.get("dates", ""), exp.get("bullets", []))
 
-    # Education
+    # Education — use LLM-tailored coursework, fall back to full profile list
     _add_section_heading(doc, "Education")
-    for edu in EDUCATION:
+    edu_list = content.get("education") or EDUCATION
+    for edu in edu_list:
         p = doc.add_paragraph()
         r = p.add_run(f"{edu['degree']}  |  {edu['school']}  |  {edu['date']}")
         r.bold = True
@@ -356,18 +373,33 @@ def build_resume(content: dict) -> Document:
             r.font.size = Pt(10)
         cw.paragraph_format.space_after = Pt(4)
 
-    # Technical Skills
+    # Technical Skills — use LLM-reordered skills, fall back to full profile list
     _add_section_heading(doc, "Technical Skills")
-    for category, items in SKILLS.items():
-        p = doc.add_paragraph()
-        r_label = p.add_run(f"{category}: ")
-        r_label.bold = True
-        r_label.font.name = "Calibri"
-        r_label.font.size = Pt(10.5)
-        r_items = p.add_run(", ".join(items))
-        r_items.font.name = "Calibri"
-        r_items.font.size = Pt(10.5)
-        p.paragraph_format.space_after = Pt(2)
+    skills_list = content.get("skills")
+    if skills_list and isinstance(skills_list, list):
+        for entry in skills_list:
+            category = entry.get("category", "")
+            items = entry.get("items", [])
+            p = doc.add_paragraph()
+            r_label = p.add_run(f"{category}: ")
+            r_label.bold = True
+            r_label.font.name = "Calibri"
+            r_label.font.size = Pt(10.5)
+            r_items = p.add_run(", ".join(items))
+            r_items.font.name = "Calibri"
+            r_items.font.size = Pt(10.5)
+            p.paragraph_format.space_after = Pt(2)
+    else:
+        for category, items in SKILLS.items():
+            p = doc.add_paragraph()
+            r_label = p.add_run(f"{category}: ")
+            r_label.bold = True
+            r_label.font.name = "Calibri"
+            r_label.font.size = Pt(10.5)
+            r_items = p.add_run(", ".join(items))
+            r_items.font.name = "Calibri"
+            r_items.font.size = Pt(10.5)
+            p.paragraph_format.space_after = Pt(2)
 
     return doc
 
