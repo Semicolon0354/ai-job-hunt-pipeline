@@ -372,10 +372,11 @@ def to_markdown() -> str:
             lines.append(f"- {item}")
         lines.append("")
 
-    lines += ["---", "", "## Certifications", ""]
-    for cert in CERTS:
-        lines.append(f"- {cert}")
-    lines.append("")
+    if CERTS:
+        lines += ["---", "", "## Certifications", ""]
+        for cert in CERTS:
+            lines.append(f"- {cert}")
+        lines.append("")
 
     lines += [
         "---",

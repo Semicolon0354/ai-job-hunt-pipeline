@@ -136,7 +136,7 @@ Return a JSON object with EXACTLY this structure:
       "company": "exact company name from profile",
       "title": "exact job title from profile",
       "dates": "exact dates from profile",
-      "bullets": ["bullet1", "bullet2"]
+      "bullets": ["bullet1", "bullet2", "bullet3", "bullet4"]
     }}
   ],
   "additional_experience": [
@@ -148,6 +148,12 @@ Return a JSON object with EXACTLY this structure:
     }}
   ]
 }}
+
+BULLET COUNT RULES (strictly enforced):
+- Every role in main_experience must have EXACTLY 4 bullets — all roles, not just the first
+- Every role in additional_experience must have EXACTLY 2 bullets
+- NEVER move a role from additional_experience to main_experience to meet the bullet count
+- Role placement is fixed by profile rules — bullet count does not change it
 
 CANDIDATE PROFILE:
 {profile_text}
@@ -362,10 +368,6 @@ def build_resume(content: dict) -> Document:
         r_items.font.name = "Calibri"
         r_items.font.size = Pt(10.5)
         p.paragraph_format.space_after = Pt(2)
-
-    # Certifications
-    _add_section_heading(doc, "Certifications")
-    _add_body_paragraph(doc, "  •  ".join(CERTS))
 
     return doc
 

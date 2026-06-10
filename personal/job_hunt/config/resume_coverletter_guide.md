@@ -59,8 +59,9 @@ Select 8–12 skills from Josh's profile that directly match job requirements. U
 - General data/BI/analytics roles → move to "Additional Experience" at the bottom
 
 **Bullet count:**
-- Every role in the main Experience section: exactly 4 bullets each — this applies to all roles listed there, not just the first one
+- Every role in the main Experience section: exactly 4 bullets each — this applies to ALL roles listed there, not just the first one
 - Every role in the Additional Experience section: exactly 2 bullets each
+- IMPORTANT: Bullet count rules never change which roles go in which section. Do not move a role from Additional Experience to main Experience to meet a bullet count. Placement is governed solely by the placement rules above. If a role's bullet bank has fewer bullets than required, use all available bullets for that role.
 
 For each relevant bullet, work in 1–2 ATS keywords where they fit naturally. Don't keyword-stuff.
 
