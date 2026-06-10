@@ -150,6 +150,12 @@ EXPERIENCE = [
             "medical providers, contributing to continuity of patient care",
             "Managed complex, multi-variable emergency situations requiring rapid data synthesis, "
             "pattern recognition, and decisive action under pressure",
+            "Completed thorough electronic patient care reports capturing assessment data, interventions, "
+            "and patient outcomes for every call, supporting quality review and regulatory compliance",
+            "Served as a field training officer for incoming paramedics and EMTs, evaluating clinical "
+            "competency and guiding adherence to operational and care protocols",
+            "Maintained readiness of medical equipment, pharmaceutical inventory, and unit supplies, "
+            "ensuring operational compliance and availability across every shift",
         ],
     },
 ]
