@@ -59,8 +59,8 @@ Select 8–12 skills from Josh's profile that directly match job requirements. U
 - General data/BI/analytics roles → move to "Additional Experience" at the bottom
 
 **Bullet count:**
-- Main experience roles: exactly 4 bullets each
-- Additional experience roles: exactly 2 bullets each
+- Every role in the main Experience section: exactly 4 bullets each — this applies to all roles listed there, not just the first one
+- Every role in the Additional Experience section: exactly 2 bullets each
 
 For each relevant bullet, work in 1–2 ATS keywords where they fit naturally. Don't keyword-stuff.
 
