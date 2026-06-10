@@ -76,15 +76,18 @@ Select 8–12 from Josh's competency pool that directly match job requirements. 
 
 ### Experience — Role Placement
 
-**Professional Experience** (always present, in this order):
+**Professional Experience** (always present, always leads):
 1. **Knowledge Manager**, 5th BN 19th SFG CONG (Jul 2024–Present) — always leads, never omit
 2. **Operations Supervisor**, UCHealth EMS (Sep 2020–Oct 2023) — always in Professional Experience
-3. **Special Forces Medical Sergeant**, 5th BN 19th SFG CONG (Jul 2019–Present) — always in Professional Experience
 
 **Placement depends on job type:**
+3. **Special Forces Medical Sergeant**, 5th BN 19th SFG CONG (Jul 2019–Present):
+   - Medical or leadership-focused roles → Professional Experience
+   - All other roles → Additional Experience
+
 4. **Paramedic**, UCHealth EMS (Oct 2014–Sep 2020):
    - Healthcare / clinical analytics roles → Professional Experience
-   - General data / BI / analytics roles → Additional Experience
+   - All other roles → Additional Experience
 
 ### Experience — How to Write Bullets
 
