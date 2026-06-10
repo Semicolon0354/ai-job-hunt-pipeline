@@ -106,7 +106,9 @@ Always include both degrees:
 - M.S. Data Analytics, Colorado State University Global Campus | Apr 2025
 - B.S. Mathematics, University of Wyoming | Dec 2013
 
-Tailor coursework to what the job values:
+Select 3–5 coursework items from the profile's coursework list that are most relevant to this role. You may only use courses that appear verbatim in the profile — do not invent, rename, or paraphrase course titles.
+
+Relevant courses by role type (all titles are exact — use as-is):
 - ML/AI roles: Foundations of Artificial Intelligence, Principles of Machine Learning, Predictive Analytics
 - BI / data warehouse roles: Data Warehousing in Enterprise Environments, Data Mining and Visualization, Enterprise Performance Management
 

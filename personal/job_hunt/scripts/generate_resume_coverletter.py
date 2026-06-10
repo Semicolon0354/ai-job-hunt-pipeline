@@ -169,7 +169,7 @@ STRICT RULES:
 - NEVER move a role from additional_experience to main_experience to meet the bullet count
 - Role placement is fixed by profile rules — bullet count does not change it
 - Bullets must be selected from the profile's existing bullets for each role. Minor wording adjustments to incorporate ATS keywords are allowed, but the core accomplishment and message must remain intact. Do not invent bullets.
-- education: keep degree, school, and date exactly as in the profile; select 3-5 most relevant coursework items for this role
+- education: keep degree, school, and date exactly as in the profile; select 3-5 coursework items from the profile's coursework list — use course titles verbatim, do not invent or rename any course
 - skills: include ALL categories and items from the profile; reorder items within each category to put job-relevant tools first; never add or remove skills, never add Tableau
 
 CANDIDATE PROFILE:
