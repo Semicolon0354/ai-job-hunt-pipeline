@@ -96,6 +96,11 @@ NOTES
 -----
 {Anything else worth knowing — company size, industry, team context if mentioned}
 ==========================================================
+
+FULL JOB POSTING
+----------------
+{Paste the complete job description text here, exactly as posted — do not summarize or truncate}
+==========================================================
 ```
 
 ---
