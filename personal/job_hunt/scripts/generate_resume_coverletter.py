@@ -41,10 +41,12 @@ CONFIG_DIR = JOB_HUNT_DIR / "config"
 sys.path.insert(0, str(COMMON_DIR))
 import profile as josh
 
-CONTACT    = josh.CONTACT
-EDUCATION  = josh.EDUCATION
-SKILLS     = josh.SKILLS
-CERTS      = josh.CERTS
+CONTACT       = josh.CONTACT
+EDUCATION     = josh.EDUCATION
+SKILLS        = josh.SKILLS
+CERTS         = josh.CERTS
+INTERESTS     = josh.INTERESTS
+ORGANIZATIONS = josh.ORGANIZATIONS
 
 # ── LLM config ────────────────────────────────────────────────────────────────
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
@@ -401,6 +403,14 @@ def build_resume(content: dict) -> Document:
             r_items.font.name = "Calibri"
             r_items.font.size = Pt(10.5)
             p.paragraph_format.space_after = Pt(2)
+
+    # Interests & Organizations
+    _add_section_heading(doc, "Interests & Organizations")
+    interests_str = "  |  ".join(
+        f"{activity}: {', '.join(disciplines)}" for activity, disciplines in INTERESTS.items()
+    )
+    _add_body_paragraph(doc, interests_str)
+    _add_body_paragraph(doc, "  |  ".join(ORGANIZATIONS))
 
     return doc
 

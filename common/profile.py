@@ -195,6 +195,11 @@ SKILLS = {
         "Classification",
         "Feature Engineering",
     ],
+    "AI-Augmented Development": [
+        "Claude Code (VS Code)",
+        "Cursor AI",
+        "Claude.ai",
+    ],
 }
 
 # ── Certifications ────────────────────────────────────────────────────────────
@@ -227,6 +232,21 @@ COMPETENCY_POOL = [
     "Database Management",
     "Operational Analytics",
     "Healthcare Analytics",
+]
+
+# ── Personal Interests ────────────────────────────────────────────────────────
+INTERESTS = {
+    "Climbing":  ["Trad climbing", "Alpine climbing"],
+    "Skiing":    ["Backcountry skiing", "Ski mountaineering"],
+    "Cycling":   ["Road cycling", "Mountain biking"],
+}
+
+# ── Organizations ─────────────────────────────────────────────────────────────
+ORGANIZATIONS = [
+    "Protect Our Winters (POW)",
+    "American Alpine Club",
+    "Access Fund",
+    "Friends of CAIC (Colorado Avalanche Information Center)",
 ]
 
 # ── Verified Metrics ──────────────────────────────────────────────────────────
@@ -308,6 +328,16 @@ def to_markdown() -> str:
 
     lines += ["---", "", "## Core Competencies", ""]
     lines.append(" | ".join(COMPETENCY_POOL))
+    lines.append("")
+
+    lines += ["---", "", "## Personal Interests", ""]
+    for activity, disciplines in INTERESTS.items():
+        lines.append(f"- **{activity}:** {', '.join(disciplines)}")
+    lines.append("")
+
+    lines += ["---", "", "## Organizations", ""]
+    for org in ORGANIZATIONS:
+        lines.append(f"- {org}")
     lines.append("")
 
     return "\n".join(lines)

@@ -118,11 +118,18 @@ Relevant courses by role type (all titles are exact — use as-is):
 ### Skills Section
 Group by category. Prioritize tools explicitly mentioned in the job description. Never include Tableau.
 
+### Interests & Organizations
+Always include a brief section at the bottom of the resume after Skills. Keep it concise — one line each.
+
+Format:
+- **Interests:** Trad & alpine climbing, backcountry skiing & ski mountaineering, road & mountain cycling
+- **Organizations:** Protect Our Winters (POW), American Alpine Club, Access Fund, Friends of CAIC
+
 ### Format
 - Clean, single-column, ATS-friendly — no tables, text boxes, or graphics
 - Font: Calibri, 10–11pt body, 12–14pt name
 - Margins: 0.75–1 inch
-- Section order: Summary → Core Competencies → Experience → Education → Skills
+- Section order: Summary → Core Competencies → Experience → Education → Skills → Interests & Organizations
 - Bold job titles and company names; dates right-aligned
 - No certifications section
 - 1–2 pages
@@ -133,8 +140,10 @@ Group by category. Prioritize tools explicitly mentioned in the job description.
 
 Apply `common/write_like_josh.md` in full. 4 paragraphs, approximately 300–400 words.
 
+**Cultural alignment:** When the company's mission, products, or culture aligns with Josh's outdoor pursuits or environmental values, weave this into the opening paragraph — genuinely, not as a throwaway line. Josh is an active trad and alpine climber, backcountry skier, ski mountaineer, and cyclist who spends most of his free time in the mountains. He's a member of Protect Our Winters, the American Alpine Club, the Access Fund, and Friends of CAIC. For outdoor gear, apparel, environmental, conservation, or adventure-oriented companies, this is a real differentiator — he's a user and advocate, not just a job applicant. Only invoke this when there's a genuine connection; don't force it for unrelated companies.
+
 **Paragraph 1 — Opening: Why This Role, Why Now**
-Don't open with "I am writing to express my interest." Open with what Josh is applying for and a specific, genuine reason this role appeals to him. Reference something concrete about the company or role. 1–3 sentences.
+Don't open with "I am writing to express my interest." Open with what Josh is applying for and a specific, genuine reason this role appeals to him. Reference something concrete about the company or role — including cultural fit if relevant (see above). 1–3 sentences.
 
 **Paragraph 2 — The Bridge: Background to This Role**
 Connect Josh's background to this specific job. Lead with the most relevant experience. Explain the through-line: EMS → data analytics → Knowledge Manager at the National Guard → this role. Use "That is," or "Stated differently," at least once. Reference his M.S. in Data Analytics (completed April 2025) and B.S. in Mathematics. 3–5 sentences.
