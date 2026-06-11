@@ -404,12 +404,16 @@ def build_resume(content: dict) -> Document:
             r_items.font.size = Pt(10.5)
             p.paragraph_format.space_after = Pt(2)
 
-    # Interests & Organizations
-    _add_section_heading(doc, "Interests & Organizations")
+    # Interests 
+    _add_section_heading(doc, "Interests")
     interests_str = "  |  ".join(
         f"{activity}: {', '.join(disciplines)}" for activity, disciplines in INTERESTS.items()
     )
     _add_body_paragraph(doc, interests_str)
+    doc.add_paragraph().paragraph_format.space_after = Pt(4)
+
+    # Organizations
+    _add_section_heading(doc, "Organizations")
     _add_body_paragraph(doc, "  |  ".join(ORGANIZATIONS))
 
     return doc
