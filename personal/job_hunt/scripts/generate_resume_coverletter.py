@@ -162,7 +162,8 @@ Return a JSON object with EXACTLY this structure:
       "category": "exact category name from profile",
       "items": ["skill1", "skill2"]
     }}
-  ]
+  ],
+  "include_interests_organizations": true
 }}
 
 STRICT RULES:
@@ -173,6 +174,7 @@ STRICT RULES:
 - Bullets must be selected from the profile's existing bullets for each role. Minor wording adjustments to incorporate ATS keywords are allowed, but the core accomplishment and message must remain intact. Do not invent bullets.
 - education: keep degree, school, and date exactly as in the profile; select 3-5 coursework items from the profile's coursework list — use course titles verbatim, do not invent or rename any course
 - skills: include ALL categories and items from the profile; reorder items within each category to put job-relevant tools first; never add or remove skills, never add Tableau
+- include_interests_organizations: true only when the company has a genuine connection to outdoor/environmental values — per the Interests & Organizations rule in the tailoring guide; false for all others
 
 CANDIDATE PROFILE:
 {profile_text}
@@ -404,17 +406,18 @@ def build_resume(content: dict) -> Document:
             r_items.font.size = Pt(10.5)
             p.paragraph_format.space_after = Pt(2)
 
-    # Interests 
-    _add_section_heading(doc, "Interests")
-    interests_str = "  |  ".join(
-        f"{activity}: {', '.join(disciplines)}" for activity, disciplines in INTERESTS.items()
-    )
-    _add_body_paragraph(doc, interests_str)
-    doc.add_paragraph().paragraph_format.space_after = Pt(4)
+    if content.get("include_interests_organizations", False):
+        # Interests
+        _add_section_heading(doc, "Interests")
+        interests_str = "  |  ".join(
+            f"{activity}: {', '.join(disciplines)}" for activity, disciplines in INTERESTS.items()
+        )
+        _add_body_paragraph(doc, interests_str)
+        doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
-    # Organizations
-    _add_section_heading(doc, "Organizations")
-    _add_body_paragraph(doc, "  |  ".join(ORGANIZATIONS))
+        # Organizations
+        _add_section_heading(doc, "Organizations")
+        _add_body_paragraph(doc, "  |  ".join(ORGANIZATIONS))
 
     return doc
 

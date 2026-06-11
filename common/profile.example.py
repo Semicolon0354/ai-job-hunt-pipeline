@@ -127,13 +127,15 @@ COMPETENCY_POOL = [
 ]
 
 # ── Personal Interests ────────────────────────────────────────────────────────
-# Included at the bottom of each resume. Optional but recommended for cultural fit.
+# Included conditionally — only when the company's mission aligns with these interests.
+# The LLM decides based on the resume_coverletter_guide.md rule.
 INTERESTS = {
     "Your Activity": ["Specific discipline", "Specific discipline"],
     "Another Activity": ["Specific discipline"],
 }
 
 # ── Organizations ─────────────────────────────────────────────────────────────
+# Included conditionally alongside Interests — always together or not at all.
 ORGANIZATIONS = [
     "Organization Name",
     "Another Organization",
