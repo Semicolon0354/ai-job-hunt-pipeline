@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate a tailored resume and cover letter for Josh Humphreys from a job summary .txt file.
+Generate a tailored resume and cover letter from a job summary .txt file.
 Uses a local Qwen model via Ollama to generate all content; python-docx handles formatting.
 
 Usage:
@@ -39,14 +39,14 @@ CONFIG_DIR = JOB_HUNT_DIR / "config"
 # ── Profile import ────────────────────────────────────────────────────────────
 # All personal data lives in common/profile.py — edit there, not here.
 sys.path.insert(0, str(COMMON_DIR))
-import profile as josh
+import profile as user
 
-CONTACT       = josh.CONTACT
-EDUCATION     = josh.EDUCATION
-SKILLS        = josh.SKILLS
-CERTS         = josh.CERTS
-INTERESTS     = josh.INTERESTS
-ORGANIZATIONS = josh.ORGANIZATIONS
+CONTACT       = user.CONTACT
+EDUCATION     = user.EDUCATION
+SKILLS        = user.SKILLS
+CERTS         = user.CERTS
+INTERESTS     = user.INTERESTS
+ORGANIZATIONS = user.ORGANIZATIONS
 
 # ── LLM config ────────────────────────────────────────────────────────────────
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
@@ -120,8 +120,8 @@ def generate_resume_content(
 ) -> dict:
     """Ask the LLM to produce tailored resume sections as structured JSON."""
     system = (
-        "You are a professional resume writer specializing in data analytics roles. "
-        "Tailor Josh Humphreys' resume to the job posting provided. "
+        "You are a professional resume writer. "
+        f"Tailor {CONTACT['name']}'s resume to the job posting provided. "
         "Output ONLY valid JSON — no prose, no markdown fences, no commentary.\n\n"
         "TAILORING GUIDE (follow these rules exactly):\n"
         + guide_text
@@ -205,17 +205,17 @@ def generate_cover_letter_paragraphs(
     model: str,
     base_url: str,
 ) -> list[str]:
-    """Ask the LLM to write a 4-paragraph cover letter in Josh's voice."""
+    """Ask the LLM to write a 4-paragraph cover letter in the user's voice."""
     system = (
-        "You are writing in Josh Humphreys' voice. Apply EVERY pattern in the writing guide below. "
+        f"You are writing in {CONTACT['name']}'s voice. Apply EVERY pattern in the writing guide below. "
         "Do not revert to generic AI writing style. "
         "Output ONLY valid JSON — no prose, no markdown fences.\n\n"
-        "=== VOICE AND WRITING STYLE (write_like_josh.md) ===\n"
+        "=== VOICE AND WRITING STYLE (write_like_user.md) ===\n"
         + voice_text
         + "\n\n=== COVER LETTER RULES (resume_coverletter_guide.md) ===\n"
         + guide_text
     )
-    user = f"""Write a 4-paragraph cover letter for Josh Humphreys applying for the {role} position at {company}.
+    user = f"""Write a 4-paragraph cover letter for {CONTACT['name']} applying for the {role} position at {company}.
 Follow the cover letter structure and voice rules in the guides above.
 
 Return ONLY this JSON structure:
@@ -475,7 +475,7 @@ def sanitize(s: str) -> str:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate tailored resume and cover letter for Josh Humphreys")
+    parser = argparse.ArgumentParser(description="Generate tailored resume and cover letter from a job summary")
     parser.add_argument("--summary", required=True, help="Path to job summary .txt file")
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Ollama model name (default: {DEFAULT_MODEL})")
     parser.add_argument("--ollama-url", default=DEFAULT_OLLAMA_URL, help=f"Ollama base URL (default: {DEFAULT_OLLAMA_URL})")
@@ -488,8 +488,8 @@ def main() -> None:
 
     # Read all inputs
     summary_text = summary_path.read_text(encoding="utf-8", errors="replace")
-    profile_text = josh.to_markdown()
-    voice_text = (COMMON_DIR / "write_like_josh.md").read_text(encoding="utf-8")
+    profile_text = user.to_markdown()
+    voice_text = (COMMON_DIR / "write_like_user.md").read_text(encoding="utf-8")
     guide_text = (CONFIG_DIR / "resume_coverletter_guide.md").read_text(encoding="utf-8")
 
     meta = parse_summary(summary_text)
@@ -515,15 +515,17 @@ def main() -> None:
     out_dir = APPLICATIONS_DIR / folder_name
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    last_name = sanitize(CONTACT["name"].split()[-1])
+
     # Save resume (marked as rough draft — copy and edit to trigger the feedback loop)
     resume_doc = build_resume(resume_content)
-    resume_path = out_dir / f"Humphreys_Resume_{sanitize(company)}_{sanitize(role)}_rough_draft.docx"
+    resume_path = out_dir / f"{last_name}_Resume_{sanitize(company)}_{sanitize(role)}_rough_draft.docx"
     resume_doc.save(resume_path)
     print(f"\nSaved resume:       {resume_path}")
 
     # Save cover letter (same rough draft convention)
     cl_doc = build_cover_letter(cl_paragraphs, company, role, doc_date)
-    cl_path = out_dir / f"Humphreys_Cover_Letter_{sanitize(company)}_{sanitize(role)}_rough_draft.docx"
+    cl_path = out_dir / f"{last_name}_Cover_Letter_{sanitize(company)}_{sanitize(role)}_rough_draft.docx"
     cl_doc.save(cl_path)
     print(f"Saved cover letter: {cl_path}")
 

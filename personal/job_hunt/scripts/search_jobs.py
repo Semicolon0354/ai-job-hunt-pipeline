@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-search_jobs.py — Automated Indeed job search for Joshua Humphreys.
+search_jobs.py — Automated Indeed job search.
 
 Uses the Claude Code CLI (claude.exe) which has the Indeed MCP integration
 configured. Claude runs the three searches, filters, and scores jobs. Python
@@ -35,7 +35,7 @@ SUMMARIES_DIR   = JOB_HUNT_DIR / "job_summaries"
 
 # ── Profile import ─────────────────────────────────────────────────────────────
 sys.path.insert(0, str(COMMON_DIR))
-import profile as josh
+import profile as user
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
@@ -113,7 +113,7 @@ def build_search_prompt(rules: str, profile: str, seen: list[dict]) -> str:
         )
 
     return f"""\
-You are a job search agent for Joshua Humphreys. Today is {today}.
+You are a job search agent. Today is {today}.
 
 Use the Indeed search and job-details tools to find the best-matching remote
 data analytics opportunities, then return the results as structured JSON.
@@ -121,7 +121,7 @@ data analytics opportunities, then return the results as structured JSON.
 === SEARCH RULES AND SCORING RUBRIC ===
 {rules}
 
-=== JOSH'S PROFILE ===
+=== CANDIDATE PROFILE ===
 {profile}
 {dup_block}
 === INSTRUCTIONS ===
@@ -148,7 +148,7 @@ no closing commentary. Each element represents one qualified job:
     "salary": "$90,000 - $110,000",
     "score": 85,
     "url": "https://www.indeed.com/viewjob?jk=abc123",
-    "why_good_fit": "2-3 sentence explanation of why this matches Josh's background.",
+    "why_good_fit": "2-3 sentence explanation of why this matches the candidate's background.",
     "key_requirements": [
       "SQL",
       "Power BI",
@@ -166,7 +166,7 @@ no closing commentary. Each element represents one qualified job:
       "Experience with dbt",
       "Healthcare domain knowledge"
     ],
-    "watch_outs": "Requires Tableau experience — Josh is stronger in Power BI.",
+    "watch_outs": "Requires Tableau experience — candidate is stronger in Power BI.",
     "notes": "Mid-size SaaS company, ~500 employees. Fast-moving analytics team."
   }}
 ]
@@ -259,7 +259,7 @@ def main() -> None:
     args = parser.parse_args()
 
     rules   = (CONFIG_DIR / "job_search_rules.md").read_text(encoding="utf-8")
-    profile = josh.to_markdown()
+    profile = user.to_markdown()
     seen    = previously_seen_jobs()
     prompt  = build_search_prompt(rules, profile, seen)
     today   = date.today().isoformat()

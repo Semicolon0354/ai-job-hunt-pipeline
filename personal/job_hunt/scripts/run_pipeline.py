@@ -118,7 +118,7 @@ def main() -> None:
         log(f"========== Pipeline started: {started} ==========", logfile)
         log(f"Mode: {'docs-only' if args.docs_only else 'search-only' if args.search_only else 'full'}", logfile)
 
-        # ── Step 0: Learn from any edits Josh made since the last run ──────────
+        # ── Step 0: Feedback loop — learn from edits since the last run ──────────
         if not args.docs_only and not args.search_only:
             run_step(
                 [PYTHON, str(LEARN_SCRIPT)],

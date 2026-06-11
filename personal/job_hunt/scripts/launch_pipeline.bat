@@ -5,7 +5,17 @@ REM Starts Ollama if not already running, then runs the full pipeline.
 
 setlocal
 
-set "PYTHON=C:\Users\jdhum\AppData\Local\Python\pythoncore-3.14-64\python.exe"
+REM ── Configure paths for your machine ─────────────────────────────────────────
+REM If 'python' is on your PATH, leave PYTHON as-is.
+REM Otherwise set it to your python.exe full path, e.g.:
+REM   set "PYTHON=C:\Users\YourName\AppData\Local\Python\pythoncore-3.14-64\python.exe"
+set "PYTHON=python"
+
+REM If 'ollama' is on your PATH, leave OLLAMA_EXE as-is.
+REM Otherwise set it to your ollama.exe full path, e.g.:
+REM   set "OLLAMA_EXE=C:\Users\YourName\AppData\Local\Programs\Ollama\ollama.exe"
+set "OLLAMA_EXE=ollama"
+
 set "PIPELINE=%~dp0run_pipeline.py"
 set "LOG=%~dp0..\logs\launcher.log"
 set PYTHONIOENCODING=utf-8
@@ -17,7 +27,7 @@ REM ── Start Ollama if it's not already running ─────────�
 tasklist /FI "IMAGENAME eq ollama.exe" 2>nul | find /I "ollama.exe" >nul
 if %ERRORLEVEL% neq 0 (
     echo [%date% %time%] Ollama not running -- starting it >> "%LOG%"
-    start /B "" "C:\Users\jdhum\AppData\Local\Programs\Ollama\ollama.exe"
+    start /B "" "%OLLAMA_EXE%"
     timeout /t 8 /nobreak >nul
 ) else (
     echo [%date% %time%] Ollama already running >> "%LOG%"

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-learn_from_edits.py — Feedback loop: learn from Josh's document edits.
+learn_from_edits.py — Feedback loop: learn from document edits.
 
 Scans applications/ for pairs of:
   - *_rough_draft.docx  (LLM-generated output)
-  - *.docx without the suffix  (Josh's edited final version)
+  - *.docx without the suffix  (the edited final version)
 
 When a pair is found and hasn't been analyzed yet:
   1. Extracts text from both versions and computes similarity.
   2. If similarity < THRESHOLD, calls Claude to identify patterns.
-  3. Appends learned rules to write_like_josh.md and/or resume_coverletter_guide.md.
+  3. Appends learned rules to write_like_user.md and/or resume_coverletter_guide.md.
   4. Marks the folder as analyzed (.feedback_applied) to avoid reprocessing.
 
 How to use the feedback loop:
@@ -45,7 +45,7 @@ COMMON_DIR      = CLAUDE_CODE_DIR / "common"
 CONFIG_DIR      = JOB_HUNT_DIR / "config"
 APPS_DIR        = JOB_HUNT_DIR / "applications"
 
-WRITE_LIKE_JOSH = COMMON_DIR / "write_like_josh.md"
+WRITE_LIKE_USER = COMMON_DIR / "write_like_user.md"
 GUIDE_FILE      = CONFIG_DIR / "resume_coverletter_guide.md"
 FEEDBACK_MARKER = ".feedback_applied"
 
@@ -128,15 +128,14 @@ def build_analysis_prompt(
 === {label} — ROUGH DRAFT (LLM output) ===
 {pair['rough_text']}
 
-=== {label} — FINAL VERSION (Josh's edits) ===
+=== {label} — FINAL VERSION (edited) ===
 {pair['final_text']}
 """)
 
     return f"""\
 You are analyzing the differences between LLM-generated job application documents
-and the edited versions Josh Humphreys saved as his final drafts. Your job is to
-extract reusable writing patterns from Josh's edits so future documents need
-fewer corrections.
+and the edited final versions. Your job is to extract reusable writing patterns
+from the edits so future documents need fewer corrections.
 
 Application folder: {app_name}
 Analysis date: {today}
@@ -145,17 +144,17 @@ Analysis date: {today}
 === CURRENT RESUME/COVER LETTER GUIDE (resume_coverletter_guide.md) ===
 {current_guide}
 
-=== CURRENT VOICE GUIDE (write_like_josh.md) ===
+=== CURRENT VOICE GUIDE (write_like_user.md) ===
 {current_voice}
 
 === INSTRUCTIONS ===
 
-Study what Josh changed. Focus on extracting PATTERNS — rules that would improve
+Study what changed. Focus on extracting PATTERNS — rules that would improve
 future documents across all applications, not observations specific to this one
 company or role.
 
 Ask yourself for each change:
-  - Is this a style preference that should always apply? → add to write_like_josh.md
+  - Is this a style preference that should always apply? → add to write_like_user.md
   - Is this a structural or content rule? → add to resume_coverletter_guide.md
   - Is this just a company-specific word swap? → ignore it
 
@@ -164,7 +163,7 @@ Respond with ONLY a JSON object in a ```json code block:
 ```json
 {{
   "significant_changes": true,
-  "summary": "One sentence: the main theme of Josh's edits",
+  "summary": "One sentence: the main theme of the edits",
   "voice_additions": "",
   "guide_additions": ""
 }}
@@ -200,7 +199,7 @@ def append_to_guide(path: Path, content: str) -> None:
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Learn from Josh's document edits")
+    parser = argparse.ArgumentParser(description="Learn from document edits (feedback loop)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show what would be analyzed without making changes")
     parser.add_argument("--model", default="claude-opus-4-8")
@@ -244,7 +243,7 @@ def main() -> None:
         sys.exit(1)
 
     current_guide = GUIDE_FILE.read_text(encoding="utf-8") if GUIDE_FILE.exists() else ""
-    current_voice = WRITE_LIKE_JOSH.read_text(encoding="utf-8") if WRITE_LIKE_JOSH.exists() else ""
+    current_voice = WRITE_LIKE_USER.read_text(encoding="utf-8") if WRITE_LIKE_USER.exists() else ""
 
     for folder, by_type in pairs_by_folder.items():
         print(f"\n{'─' * 60}")
@@ -309,10 +308,10 @@ def main() -> None:
         guide_additions = analysis.get("guide_additions", "").strip()
         updated: list[str] = []
 
-        if voice_additions and WRITE_LIKE_JOSH.exists():
-            append_to_guide(WRITE_LIKE_JOSH, voice_additions)
-            current_voice = WRITE_LIKE_JOSH.read_text(encoding="utf-8")
-            updated.append("write_like_josh.md")
+        if voice_additions and WRITE_LIKE_USER.exists():
+            append_to_guide(WRITE_LIKE_USER, voice_additions)
+            current_voice = WRITE_LIKE_USER.read_text(encoding="utf-8")
+            updated.append("write_like_user.md")
 
         if guide_additions and GUIDE_FILE.exists():
             append_to_guide(GUIDE_FILE, guide_additions)

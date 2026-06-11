@@ -41,7 +41,7 @@ Pick the **top 3** scoring jobs after applying hard filters. Maximum 3 total per
 ## Output — Summary .txt Files
 
 Save one file per job to:
-`C:\Users\jdhum\OneDrive\Claude_Code\personal\job_hunt\job_summaries\`
+`<repo_root>\personal\job_hunt\job_summaries\`
 
 **Filename format:** `summary_{Company}_{YYYY-MM-DD}.txt`
 Example: `summary_Acme_Corp_2026-04-28.txt`
@@ -63,7 +63,7 @@ COMPENSATION
 
 WHY THIS IS A GOOD FIT
 -----------------------
-{2-3 sentences explaining why this matches Josh's background}
+{2-3 sentences explaining why this matches the candidate's background}
 
 KEY REQUIREMENTS TO HIGHLIGHT IN APPLICATION
 ---------------------------------------------
@@ -90,7 +90,7 @@ Nice-to-haves:
 
 WATCH-OUTS / GAPS
 ------------------
-{Any mismatches between Josh's background and the JD}
+{Any mismatches between the candidate's background and the JD}
 
 NOTES
 -----

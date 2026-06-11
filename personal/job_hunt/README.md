@@ -46,8 +46,10 @@ Claude_Code/
 ├── common/                          ← Shared across all projects
 │   ├── profile.py                   ← YOUR PROFILE — single source of truth
 │   │                                   Edit this to update your info everywhere.
-│   └── write_like_josh.md           ← Voice and tone guide for cover letters.
+│   │                                   (not committed — copy profile.example.py to get started)
+│   └── write_like_user.md           ← Voice and tone guide for cover letters.
 │                                       The feedback loop appends learned patterns here.
+│                                       (not committed — copy write_like_user.example.md to get started)
 │
 └── personal/
     └── job_hunt/                    ← This project
@@ -60,6 +62,7 @@ Claude_Code/
         │   └── resume_coverletter_guide.md
         │                            ← Tailoring rules for the LLM.
         │                               The feedback loop appends learned rules here.
+        │                               (not committed — copy the .example version to get started)
         │
         ├── scripts/
         │   ├── run_pipeline.py      ← MAIN ENTRY POINT. Orchestrates all steps.
@@ -84,9 +87,9 @@ Claude_Code/
         │   └── Acme_Corp_2026-06-08/
         │       ├── summary_Acme_Corp_2026-06-08.txt
         │       │                    ← The scored summary (moved here from job_summaries/)
-        │       ├── Humphreys_Resume_Acme_Corp_Data_Analyst_rough_draft.docx
+        │       ├── LastName_Resume_Acme_Corp_Data_Analyst_rough_draft.docx
         │       │                    ← LLM-generated resume. Ready to review.
-        │       ├── Humphreys_Cover_Letter_Acme_Corp_Data_Analyst_rough_draft.docx
+        │       ├── LastName_Cover_Letter_Acme_Corp_Data_Analyst_rough_draft.docx
         │       │                    ← LLM-generated cover letter. Ready to review.
         │       └── .feedback_applied  ← Created after the feedback loop has analyzed
         │                                 this folder. Prevents reprocessing.
@@ -111,8 +114,8 @@ After the pipeline runs, open `applications/{Company_date}/`. You'll find two `*
 Edit the rough draft, then save a copy with `_rough_draft` removed from the filename. Both files now exist in the same folder — that's the trigger.
 
 ```
-Before:  Humphreys_Cover_Letter_Acme_Corp_Data_Analyst_rough_draft.docx
-After:   Humphreys_Cover_Letter_Acme_Corp_Data_Analyst.docx  ← your finished edits
+Before:  LastName_Cover_Letter_Acme_Corp_Data_Analyst_rough_draft.docx
+After:   LastName_Cover_Letter_Acme_Corp_Data_Analyst.docx  ← your finished edits
 ```
 
 Take as long as you need. A folder with only the rough draft (no final copy yet) is ignored by the pipeline entirely — it won't analyze or mark it. There's no deadline. The trigger is the presence of both files, not the passage of time.
@@ -124,7 +127,7 @@ One gotcha: if you create the final copy but haven't finished editing yet and th
 The pipeline's Step 0 (`learn_from_edits.py`) finds the pair, extracts the text from both versions, and measures how different they are. If the difference is significant (less than 92% similar), it sends both versions to Claude with the current writing guides and asks: *"What patterns in these edits should become permanent rules?"*
 
 Claude returns specific, actionable rules — not company-specific tweaks, but patterns that should apply everywhere. Those rules get appended to:
-- `common/write_like_josh.md` — if the changes are about voice, tone, or phrasing
+- `common/write_like_user.md` — if the changes are about voice, tone, or phrasing
 - `config/resume_coverletter_guide.md` — if they're about structure, content selection, or format
 
 A `.feedback_applied` marker is written to the folder so it's analyzed exactly once, no matter how many pipeline runs follow.
@@ -139,7 +142,7 @@ A `.feedback_applied` marker is written to the folder so it's analyzed exactly o
 
 | Dependency | Purpose | Notes |
 |---|---|---|
-| Python 3.x | Runs all scripts | `C:\Users\jdhum\AppData\Local\Python\pythoncore-3.14-64\python.exe` |
+| Python 3.x | Runs all scripts | `python` (must be on PATH, or set full path in `launch_pipeline.bat`) |
 | python-docx | Reads/writes .docx files | `pip install python-docx` |
 | requests | HTTP calls to Ollama | `pip install requests` |
 | Ollama | Local LLM inference | Must be running when pipeline runs |
@@ -185,7 +188,7 @@ schtasks /query /tn "Job Hunt Pipeline" /fo LIST
 
 If missing, recreate it:
 ```powershell
-$bat = "C:\Users\jdhum\OneDrive\Claude_Code\personal\job_hunt\scripts\launch_pipeline.bat"
+$bat = "C:\path\to\Claude_Code\personal\job_hunt\scripts\launch_pipeline.bat"
 schtasks /create /tn "Job Hunt Pipeline" /tr $bat /sc weekly /d MON,TUE,WED,THU,FRI /st 00:00 /f /it
 ```
 
@@ -198,7 +201,7 @@ Note: `/it` means the task only runs when you're logged in. It will run even wit
 All commands should be run from the `job_hunt/` directory with UTF-8 encoding set:
 
 ```powershell
-cd "C:\Users\jdhum\OneDrive\Claude_Code\personal\job_hunt"
+cd "C:\path\to\Claude_Code\personal\job_hunt"
 $env:PYTHONIOENCODING = "utf-8"
 ```
 
@@ -258,7 +261,7 @@ Edit `common/profile.py`. This is the single source of truth for everything abou
 
 ### Changing the cover letter voice
 
-Edit `common/write_like_josh.md`. This is the style guide the LLM follows when writing cover letters — sentence structure, what phrases to avoid, how paragraphs should be built. The feedback loop appends to the bottom of this file as it learns from your edits.
+Edit `common/write_like_user.md`. This is the style guide the LLM follows when writing cover letters — sentence structure, what phrases to avoid, how paragraphs should be built. The feedback loop appends to the bottom of this file as it learns from your edits.
 
 ### Changing resume/cover letter structure
 
