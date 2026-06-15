@@ -10,6 +10,7 @@ Dependencies:
     pip install python-docx requests
 """
 import argparse
+import csv
 import json
 import re
 import shutil
@@ -35,6 +36,11 @@ CLAUDE_CODE_DIR = JOB_HUNT_DIR.parent.parent
 COMMON_DIR = CLAUDE_CODE_DIR / "common"
 APPLICATIONS_DIR = JOB_HUNT_DIR / "applications"
 CONFIG_DIR = JOB_HUNT_DIR / "config"
+
+# ── Application tracker ───────────────────────────────────────────────────────
+TRACKER_FILE = APPLICATIONS_DIR / "tracker.csv"
+TRACKER_HEADERS = ["Company", "Role", "Date", "Score", "URL", "Status", "Notes"]
+TRACKER_STATUSES = ["Pending", "Applied", "Not Applying", "Interviewing", "Rejected by Company"]
 
 # ── Profile import ────────────────────────────────────────────────────────────
 # All personal data lives in common/profile.py — edit there, not here.
@@ -97,11 +103,10 @@ def parse_json_response(raw: str, label: str) -> dict | list:
 # ── Summary parsing ───────────────────────────────────────────────────────────
 
 def parse_summary(text: str) -> dict:
-    """Extract company, role, score, and date from a job summary .txt."""
-    data = {"company": "", "role": "", "score": "", "date": ""}
+    """Extract company, role, score, date, and URL from a job summary .txt."""
+    data = {"company": "", "role": "", "score": "", "date": "", "url": ""}
     for line in text.splitlines():
         low = line.lower().strip()
-        # Header line: JOB SUMMARY - Company Name | Job Title
         m = re.search(r"JOB SUMMARY - (.+?) \| (.+)", line, re.IGNORECASE)
         if m:
             data["company"] = m.group(1).strip()
@@ -110,7 +115,45 @@ def parse_summary(text: str) -> dict:
             data["score"] = line.split(":", 1)[1].strip()
         elif low.startswith("date:"):
             data["date"] = line.split(":", 1)[1].strip()
+        elif low.startswith("url:"):
+            data["url"] = line.split(":", 1)[1].strip()
     return data
+
+
+# ── Application tracker ───────────────────────────────────────────────────────
+
+def _read_tracker() -> list[dict]:
+    if not TRACKER_FILE.exists():
+        return []
+    with TRACKER_FILE.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def _write_tracker(rows: list[dict]) -> None:
+    TRACKER_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with TRACKER_FILE.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=TRACKER_HEADERS)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def _update_tracker(company: str, role: str, date_str: str, score: str = "", url: str = "") -> None:
+    """Add a Pending row for this job if it isn't already in the tracker."""
+    rows = _read_tracker()
+    key = (company.lower(), role.lower(), date_str)
+    for row in rows:
+        if (row["Company"].lower(), row["Role"].lower(), row["Date"]) == key:
+            return  # already tracked — never overwrite user-edited status
+    rows.append({
+        "Company": company,
+        "Role": role,
+        "Date": date_str,
+        "Score": score,
+        "URL": url,
+        "Status": "Pending",
+        "Notes": "",
+    })
+    _write_tracker(rows)
 
 
 # ── LLM prompts ───────────────────────────────────────────────────────────────
@@ -540,6 +583,10 @@ def main() -> None:
     dest_summary = out_dir / summary_path.name
     shutil.move(str(summary_path), dest_summary)
     print(f"Moved summary:      {dest_summary}")
+
+    # Update tracker
+    _update_tracker(company, role, folder_date, meta.get("score", ""), meta.get("url", ""))
+    print(f"Tracker:            {TRACKER_FILE}")
 
     print(f"\nDone — all files in: {out_dir}")
 
