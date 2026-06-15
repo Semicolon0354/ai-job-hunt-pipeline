@@ -167,7 +167,8 @@ no closing commentary. Each element represents one qualified job:
       "Healthcare domain knowledge"
     ],
     "watch_outs": "Requires Tableau experience — candidate is stronger in Power BI.",
-    "notes": "Mid-size SaaS company, ~500 employees. Fast-moving analytics team."
+    "notes": "Mid-size SaaS company, ~500 employees. Fast-moving analytics team.",
+    "full_posting": "Complete job description text, exactly as posted — do not summarize or truncate."
   }}
 ]
 ```
@@ -221,6 +222,11 @@ NOTES
 -----
 {notes}
 ==========================================================
+
+FULL JOB POSTING
+----------------
+{full_posting}
+==========================================================
 """
 
 
@@ -243,6 +249,7 @@ def format_summary(job: dict, today: str) -> str:
         nice_to_haves   = nice,
         watch_outs      = job.get("watch_outs", "None noted"),
         notes           = job.get("notes", ""),
+        full_posting    = job.get("full_posting", "Not available"),
     )
 
 
