@@ -32,9 +32,10 @@ JOB_HUNT_DIR  = SCRIPT_DIR.parent
 SUMMARIES_DIR = JOB_HUNT_DIR / "job_summaries"
 LOGS_DIR      = JOB_HUNT_DIR / "logs"
 
-SEARCH_SCRIPT  = SCRIPT_DIR / "search_jobs.py"
-DOCS_SCRIPT    = SCRIPT_DIR / "generate_resume_coverletter.py"
-LEARN_SCRIPT   = SCRIPT_DIR / "learn_from_edits.py"
+SEARCH_SCRIPT   = SCRIPT_DIR / "search_jobs.py"
+DOCS_SCRIPT     = SCRIPT_DIR / "generate_resume_coverletter.py"
+LEARN_SCRIPT    = SCRIPT_DIR / "learn_from_edits.py"
+OUTCOMES_SCRIPT = SCRIPT_DIR / "learn_from_outcomes.py"
 PYTHON         = sys.executable  # same interpreter that launched this script
 
 
@@ -118,7 +119,7 @@ def main() -> None:
         log(f"========== Pipeline started: {started} ==========", logfile)
         log(f"Mode: {'docs-only' if args.docs_only else 'search-only' if args.search_only else 'full'}", logfile)
 
-        # ── Step 0: Feedback loop — learn from edits since the last run ──────────
+        # ── Step 0: Learn from document edits ─────────────────────────────────
         if not args.docs_only and not args.search_only:
             run_step(
                 [PYTHON, str(LEARN_SCRIPT)],
@@ -126,7 +127,16 @@ def main() -> None:
                 logfile,
                 timeout=300,
             )
-            # Non-fatal: if learning fails, continue with search + generation
+
+        # ── Step 0.5: Learn from application outcomes ──────────────────────────
+        if not args.docs_only:
+            run_step(
+                [PYTHON, str(OUTCOMES_SCRIPT)],
+                "Learn from outcomes (search refinement)",
+                logfile,
+                timeout=300,
+            )
+        # Both learning steps are non-fatal — pipeline continues regardless
 
         # ── Step 1: Job search ─────────────────────────────────────────────────
         new_summaries: list[Path] = []

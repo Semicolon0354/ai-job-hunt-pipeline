@@ -12,6 +12,7 @@ personal/job_hunt/logs/
 common/profile.py
 common/write_like_user.md
 personal/job_hunt/config/resume_coverletter_guide.md
+personal/job_hunt/applications/tracker.csv
 
 # OS / editor noise
 .DS_Store

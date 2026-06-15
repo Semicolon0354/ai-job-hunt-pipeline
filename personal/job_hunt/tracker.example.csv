@@ -1,0 +1,8 @@
+Company,Role,Date,Score,URL,Status,Notes
+Acme Analytics,Data Analyst,2026-06-01,85,https://www.indeed.com/viewjob?jk=abc123,Applied,
+DataCo Inc,Business Intelligence Analyst,2026-06-02,78,https://www.indeed.com/viewjob?jk=def456,Not Applying,Requires Tableau — not worth the gap
+TechCorp,Analytics Engineer,2026-06-03,91,https://www.indeed.com/viewjob?jk=ghi789,Interviewing,
+Widgets LLC,Data Analyst,2026-06-04,72,https://www.indeed.com/viewjob?jk=jkl012,Not Applying,Contract only — looking for FTE
+Globex Corp,Senior BI Developer,2026-06-05,88,https://www.indeed.com/viewjob?jk=mno345,Applied,
+Initech,Data Engineer,2026-06-06,65,https://www.indeed.com/viewjob?jk=pqr678,Not Applying,Requires 5+ years dbt — too far outside profile
+Umbrella Analytics,Business Analyst,2026-06-07,80,https://www.indeed.com/viewjob?jk=stu901,Rejected by Company,

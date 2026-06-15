@@ -25,6 +25,12 @@ Windows Task Scheduler (Mon–Fri, midnight)
               │     If you edited a doc since the last run, Claude analyzes
               │     what changed and appends learned rules to the writing guides.
               │
+              ├── STEP 0.5 — Learn from outcomes (learn_from_outcomes.py)
+              │     Reads tracker.csv for decided applications (Applied, Not Applying,
+              │     Interviewing, Rejected by Company). Identifies patterns and
+              │     appends updates to job_search_rules.md before the search runs.
+              │     Skips silently if fewer than 3 entries have been decided.
+              │
               ├── STEP 1 — Job search (search_jobs.py)
               │     Claude Code CLI + Indeed MCP tools run 3 searches.
               │     Results are filtered, scored, and saved as .txt summaries
@@ -34,6 +40,7 @@ Windows Task Scheduler (Mon–Fri, midnight)
                     For each new .txt summary, a local Qwen model generates
                     a tailored resume and cover letter.
                     Both saved as *_rough_draft.docx in applications/{Company_date}/.
+                    Also adds a row to tracker.csv with status Pending.
 ```
 
 ---
