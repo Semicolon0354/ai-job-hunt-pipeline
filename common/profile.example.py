@@ -106,6 +106,30 @@ SKILLS = {
     # Add or remove categories to match your actual skill set
 }
 
+# ── Projects ─────────────────────────────────────────────────────────────────
+# Optional. Include personal or academic projects that demonstrate technical depth
+# not covered by work history — useful for AI/ML, automation, or data engineering roles.
+# Leave as an empty list if you have none to include.
+PROJECTS = [
+    {
+        "name":        "Your Project Name",
+        "dates":       "2025 – Present",
+        "type":        "personal",          # "personal", "academic project", "academic capstone"
+        "tools":       ["Python", "pandas", "Some API"],
+        "github":      "github.com/YourUsername/your-repo",   # optional — remove if no public repo
+        "description": "One-sentence description of what this project does and why it matters.",
+        "bullets": [
+            "What you built and how — be specific about tools and scale",
+            "What outcome or result the project produced",
+        ],
+        "ai_tool":    "Cursor AI",          # or "Claude Code", or omit if no AI tool used
+        "ai_context": (
+            "One sentence on how the AI tool was used — e.g., 'Developed with Cursor AI for "
+            "scaffolding, API integration, and debugging.'"
+        ),
+    },
+]
+
 # ── Certifications ────────────────────────────────────────────────────────────
 CERTS = [
     # "Certification Name — Issuing Organization — Year",
@@ -187,6 +211,23 @@ def to_markdown() -> str:
         for b in exp["bullets"]:
             lines.append(f"- {b}")
         lines.append("")
+
+    if PROJECTS:
+        lines += ["---", "", "## Projects", ""]
+        for proj in PROJECTS:
+            ai_note = f" *(built with {proj['ai_tool']})*" if proj.get("ai_tool") else ""
+            lines.append(f"### {proj['name']}{ai_note}")
+            lines.append(f"**{proj['type'].title()}** | {proj['dates']} | Tools: {', '.join(proj['tools'])}")
+            if proj.get("github"):
+                lines.append(f"GitHub: {proj['github']}")
+            lines.append("")
+            lines.append(proj["description"])
+            lines.append("")
+            for b in proj["bullets"]:
+                lines.append(f"- {b}")
+            if proj.get("ai_context"):
+                lines.append(f"\n*AI usage: {proj['ai_context']}*")
+            lines.append("")
 
     lines += ["---", "", "## Technical Skills", ""]
     for category, items in SKILLS.items():
