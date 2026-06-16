@@ -125,3 +125,9 @@ Top pick: {Company} — {one sentence why}
 
 - Does not draft resumes or cover letters
 - Does not move or modify existing files
+
+---
+## Learned from Outcomes — 2026-06-16
+- Skip faith-affiliated employers (e.g. Catholic/Christian/ministry orgs) and insurance carriers — the candidate declines both on principle regardless of score (Cross Catholic Outreach, The Hanover Insurance Group).
+- Verify the company's actual industry/products before scoring (don't infer from the name) and note it in the summary — a mis-identified employer wasted a full resume/cover-letter cycle (mSupply was assumed to be medical supply).
+- De-prioritize listings likely to be pulled quickly or stale; one viable Business Analyst role (JetRuby) was taken down before the candidate could apply — surface fresh postings first.
