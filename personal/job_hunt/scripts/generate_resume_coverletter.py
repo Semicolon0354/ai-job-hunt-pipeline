@@ -53,6 +53,7 @@ SKILLS        = user.SKILLS
 CERTS         = user.CERTS
 INTERESTS     = user.INTERESTS
 ORGANIZATIONS = user.ORGANIZATIONS
+PROJECTS      = user.PROJECTS
 
 # ── LLM config ────────────────────────────────────────────────────────────────
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
@@ -206,6 +207,16 @@ Return a JSON object with EXACTLY this structure:
       "items": ["skill1", "skill2"]
     }}
   ],
+  "projects": [
+    {{
+      "name": "exact project name from profile",
+      "dates": "exact dates from profile",
+      "type": "exact type from profile (personal / academic capstone / academic project)",
+      "tools_line": "comma-separated tools string from profile",
+      "github": "github URL from profile or empty string",
+      "bullets": ["bullet selected verbatim from profile bullets"]
+    }}
+  ],
   "include_interests_organizations": true
 }}
 
@@ -218,6 +229,7 @@ STRICT RULES:
 - education: keep degree, school, and date exactly as in the profile; select 3-5 coursework items from the profile's coursework list — use course titles verbatim, do not invent or rename any course
 - skills: include ALL categories and items from the profile; reorder items within each category to put job-relevant tools first; never add or remove skills, never add Tableau
 - include_interests_organizations: true only when the company has a genuine connection to outdoor/environmental values — per the Interests & Organizations rule in the tailoring guide; false for all others
+- projects: include ONLY when the role emphasizes ML/AI, agentic AI, automation, data engineering, or the posting explicitly references portfolio/GitHub work. Return an empty array [] for general data analyst, BI, or reporting roles. When included, always return exactly 2 projects — no more, no less. Select the 2 most appropriate projects from the profile's PROJECTS list based on what the job values: AI/ML or NLP roles → Pipeline + AviBot; data engineering/APIs/Python roles → EMS Capstone + Pipeline; automation or agentic AI roles → Pipeline + EMS Capstone; healthcare analytics → EMS Capstone + Pipeline. Copy name, dates, type, and tools_line exactly from the profile. Select 2–3 bullets verbatim from the profile bullets for each project; do not invent bullets.
 
 CANDIDATE PROFILE:
 {profile_text}
@@ -420,6 +432,33 @@ def build_resume(content: dict) -> Document:
             r.font.name = "Calibri"
             r.font.size = Pt(10)
         cw.paragraph_format.space_after = Pt(4)
+
+    # Projects (optional — only when LLM returns entries)
+    projects = content.get("projects", [])
+    if projects:
+        _add_section_heading(doc, "Projects")
+        for proj in projects:
+            p = doc.add_paragraph()
+            r_name = p.add_run(proj.get("name", ""))
+            r_name.bold = True
+            r_name.font.name = "Calibri"
+            r_name.font.size = Pt(10.5)
+            sep = p.add_run(f"  |  {proj.get('type', '').title()}  |  {proj.get('dates', '')}")
+            sep.font.name = "Calibri"
+            sep.font.size = Pt(10.5)
+            p.paragraph_format.space_after = Pt(1)
+
+            tools_line = proj.get("tools_line", "")
+            if tools_line:
+                tl = doc.add_paragraph()
+                r_tl = tl.add_run(f"Tools: {tools_line}")
+                r_tl.font.name = "Calibri"
+                r_tl.font.size = Pt(10)
+                tl.paragraph_format.space_after = Pt(1)
+
+            for bullet in proj.get("bullets", []):
+                _add_bullet(doc, bullet)
+            doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
     # Technical Skills — use LLM-reordered skills, fall back to full profile list
     _add_section_heading(doc, "Technical Skills")

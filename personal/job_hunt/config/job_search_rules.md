@@ -131,3 +131,8 @@ Top pick: {Company} — {one sentence why}
 - Skip faith-affiliated employers (e.g. Catholic/Christian/ministry orgs) and insurance carriers — the candidate declines both on principle regardless of score (Cross Catholic Outreach, The Hanover Insurance Group).
 - Verify the company's actual industry/products before scoring (don't infer from the name) and note it in the summary — a mis-identified employer wasted a full resume/cover-letter cycle (mSupply was assumed to be medical supply).
 - De-prioritize listings likely to be pulled quickly or stale; one viable Business Analyst role (JetRuby) was taken down before the candidate could apply — surface fresh postings first.
+
+---
+## Learned from Outcomes — 2026-06-17
+- Score-calibration fix: cap or down-weight the role-fit points for "Senior"/"Lead" Data Engineer titles. The candidate is analyst/BI level, so a Senior Healthcare Data Engineer scored 80 but was declined as "not enough experience… not worth the effort." Treat senior data-engineering roles as a stretch, not a strong match.
+- When a Data Engineer or senior role also requires deep domain expertise (e.g. healthcare), flag the experience gap explicitly in WATCH-OUTS / GAPS so stretch roles aren't surfaced as top picks.

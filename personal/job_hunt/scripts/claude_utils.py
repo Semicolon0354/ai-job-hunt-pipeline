@@ -39,7 +39,8 @@ def call_claude(
 ) -> str:
     """Run claude.exe in print mode and return the text result."""
     result = subprocess.run(
-        [str(claude_exe), "-p", "--output-format", "json", "--model", model, prompt],
+        [str(claude_exe), "-p", "--output-format", "json", "--model", model],
+        input=prompt,
         capture_output=True,
         text=True,
         encoding="utf-8",

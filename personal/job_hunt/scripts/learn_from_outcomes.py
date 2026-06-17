@@ -75,11 +75,19 @@ Decided applications ({summary_line}):
 
 === INSTRUCTIONS ===
 
-Study the patterns in these outcomes. Focus only on what would improve future searches:
-- Are there role types, industries, or company patterns that consistently get passed on?
-- Do the 0–100 scores correlate with actual decisions, or does the rubric need reweighting?
-- Do "Not Applying" notes reveal recurring gaps in the search filters?
-- Do interview or positive outcomes suggest what's actually converting?
+Study the patterns in these outcomes. Focus only on what would improve future searches.
+
+CRITICAL: The Notes column is the ground truth for WHY a decision was made.
+- A rule is only valid if the Notes column consistently and explicitly states the same reason across multiple entries.
+- Never infer a filter rule from title or score correlation alone. If three Senior roles were passed on but the Notes say different things (wrong company, contract only, too niche), "Senior" is NOT the pattern — the individual Notes reasons are.
+- Do not recommend filtering out a role type, seniority level, or industry unless the Notes repeatedly and explicitly name it as the reason.
+- "Not Applying" with no Notes or vague Notes is not sufficient signal for a new rule.
+
+With that constraint, look for:
+- Employer types or industries the Notes explicitly and repeatedly flag (e.g. "faith-affiliated", "insurance", "staffing agency")
+- Recurring gaps the Notes name (e.g. "requires Tableau", "contract only", "requires clearance")
+- Score calibration issues: if the Notes reveal the rubric is rewarding things that don't convert, suggest reweighting
+- Positive signals from Applied and Interviewing entries that could sharpen what to surface
 
 Only surface insights NOT already captured in the current rules.
 Be specific — "skip staffing agencies" beats "be more selective."
